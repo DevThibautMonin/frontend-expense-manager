@@ -19,7 +19,7 @@ const Expenses = (props) => {
   let expensesContent = <div>No expenses for this year.</div>
 
   if (filteredExpenses.length > 0) {
-    filteredExpenses.map((expense) => (
+    expensesContent = filteredExpenses.map((expense) => (
       <ExpenseItem
         key={expense.id}
         title={expense.title}
