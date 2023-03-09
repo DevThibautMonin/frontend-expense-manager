@@ -7,7 +7,7 @@ import ExpensesChart from './ExpensesChart'
 
 const Expenses = (props) => {
 
-  const [date, setDate] = useState('2020')
+  const [date, setDate] = useState(new Date().getFullYear().toString())
 
   const dateChangeHandler = (selectedDate) => {
     setDate(selectedDate)
