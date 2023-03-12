@@ -1,26 +1,18 @@
 import "./ExpenseForm.css"
-import { useState } from "react"
+import { useRef } from "react"
 
 const ExpenseForm = (props) => {
 
-  const [title, setTitle] = useState('')
-  const [amount, setAmount] = useState('')
-  const [date, setDate] = useState('')
-
-  const titleChangeHandler = (event) => {
-    setTitle(event.target.value)
-  }
-
-  const amountChangeHandler = (event) => {
-    setAmount(event.target.value)
-  }
-
-  const dateChangeHandler = (event) => {
-    setDate(event.target.value)
-  }
+  const titleRef = useRef()
+  const amountRef = useRef()
+  const dateRef = useRef()
 
   const submitHandler = (event) => {
     event.preventDefault()
+
+    const title = titleRef.current.value
+    const amount = amountRef.current.value
+    const date = dateRef.current.value
 
     const expenseData = {
       title: title,
@@ -28,11 +20,11 @@ const ExpenseForm = (props) => {
       date: new Date(date)
     }
 
-    setTitle('')
-    setAmount('')
-    setDate('')
-
     props.onSaveExpenseData(expenseData)
+
+    titleRef.current.value = ''
+    amountRef.current.value = ''
+    dateRef.current.value = ''
 
   }
 
@@ -41,15 +33,15 @@ const ExpenseForm = (props) => {
       <div className="new-expense__controls">
         <div className="new-expense__control">
           <label>Title</label>
-          <input type="text" value={title} onChange={titleChangeHandler} />
+          <input type="text" ref={titleRef} />
         </div>
         <div className="new-expense__control">
           <label>Amount</label>
-          <input type="number" value={amount} min="0.01" step="0.01" onChange={amountChangeHandler} />
+          <input type="number" min="0.01" step="0.01" ref={amountRef} />
         </div>
         <div className="new-expense__control">
           <label>Date</label>
-          <input type="date" value={date} min="2018-01-01" max="2025-12-31" onChange={dateChangeHandler} />
+          <input type="date" min="2018-01-01" max="2025-12-31" ref={dateRef} />
         </div>
       </div>
       <div className="new-expense__actions">
