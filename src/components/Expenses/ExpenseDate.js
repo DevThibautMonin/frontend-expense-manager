@@ -1,3 +1,4 @@
+import { Fragment } from "react"
 import "./ExpenseDate.css"
 
 const ExpenseDate = (props) => {
@@ -7,11 +8,11 @@ const ExpenseDate = (props) => {
   const day = props.date.toLocaleString("fr-FR", { month: "2-digit" })
 
   return (
-    <div className="expense-date">
+    <Fragment className="expense-date">
       <div className="expense-date__day">{day}</div>
       <div className="expense-date__month">{month}</div>
       <div className="expense-date__year">{year}</div>
-    </div>
+    </Fragment>
   )
 }
 

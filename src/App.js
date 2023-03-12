@@ -15,6 +15,7 @@ const App = () => {
     })
   }
 
+  // TODO : Déplacer les requêtes HTTP dans un dossier service/...
   const getExpensesHandler = useCallback(async () => {
     setIsLoading(true)
     setError(null)

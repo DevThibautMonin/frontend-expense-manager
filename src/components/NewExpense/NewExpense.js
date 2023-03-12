@@ -1,6 +1,6 @@
 import "./NewExpense.css"
 import ExpenseForm from "./ExpenseForm"
-import { useState } from "react"
+import { Fragment, useState } from "react"
 
 const NewExpense = (props) => {
 
@@ -24,10 +24,10 @@ const NewExpense = (props) => {
   }
 
   return (
-    <div className="new-expense">
-      {isEditing && <ExpenseForm onSaveExpenseData={saveExpenseDataHandler} onCancel={stopEditingHandler}/>}
+    <Fragment className="new-expense">
+      {isEditing && <ExpenseForm onSaveExpenseData={saveExpenseDataHandler} onCancel={stopEditingHandler} />}
       {!isEditing && <button onClick={startEditingHandler}>Add new expense</button>}
-    </div>
+    </Fragment>
   )
 }
 
