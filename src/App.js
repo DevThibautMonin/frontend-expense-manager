@@ -2,6 +2,7 @@ import { useState, useEffect, useCallback } from 'react';
 import './App.css';
 import Expenses from './components/Expenses/Expenses';
 import NewExpense from './components/NewExpense/NewExpense';
+import { getExpenses } from './services/expense.service';
 
 const App = () => {
 
@@ -9,7 +10,7 @@ const App = () => {
   const [isLoading, setIsLoading] = useState(false)
   const [error, setError] = useState(null)
 
-  const addExpenseHandler = (expense) => {
+  const onRefreshExpensesHandler = (expense) => {
     setExpenses((prevExpenses) => {
       return [expense, ...prevExpenses]
     })
@@ -20,18 +21,12 @@ const App = () => {
     setError(null)
 
     try {
-      const response = await fetch('http://localhost:4500/expense')
-
-      if (!response.ok) {
-        throw new Error('Something went wrong')
-      }
-
-      const data = await response.json()
+      const data = await getExpenses()
 
       const transformedExpenses = data.map(data => {
         return {
           id: data._id,
-          title: data.name,
+          title: data.title,
           amount: data.amount,
           date: new Date(data.date)
         }
@@ -51,7 +46,7 @@ const App = () => {
 
   return (
     <div>
-      <NewExpense onAddExpense={addExpenseHandler} />
+      <NewExpense onAddExpense={onRefreshExpensesHandler} />
       {!isLoading && <Expenses items={expenses} />}
       {isLoading && <div>Loading...</div>}
       {isLoading && error && <div>{error}</div>}
