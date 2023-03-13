@@ -7,19 +7,19 @@ import ExpensesChart from './ExpensesChart'
 
 const Expenses = (props) => {
 
-  const [date, setDate] = useState(new Date().getFullYear().toString())
+  const [currentDate, setCurrentDate] = useState(new Date().getFullYear().toString())
 
   const dateChangeHandler = (selectedDate) => {
-    setDate(selectedDate)
+    setCurrentDate(selectedDate)
   }
 
   const filteredExpenses = props.items.filter(expense => {
-    return expense.date.getFullYear().toString() === date
+    return expense.date.getFullYear().toString() === currentDate
   })
 
   return (
     <Card className='expenses'>
-      <ExpensesFilter selected={date} onDateChange={dateChangeHandler} />
+      <ExpensesFilter selected={currentDate} onDateChange={dateChangeHandler} />
       <ExpensesChart expenses={filteredExpenses} />
       <ExpensesList items={filteredExpenses} />
     </Card>
