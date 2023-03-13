@@ -1,5 +1,6 @@
 import "./ExpenseForm.css"
 import { useRef } from "react"
+import { createExpense } from "../../services/expense.service"
 
 const ExpenseForm = (props) => {
 
@@ -21,6 +22,7 @@ const ExpenseForm = (props) => {
     }
 
     props.onSaveExpenseData(expenseData)
+    createExpense(expenseData)
 
     titleRef.current.value = ''
     amountRef.current.value = ''
