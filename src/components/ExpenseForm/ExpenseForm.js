@@ -43,15 +43,15 @@ const ExpenseForm = (props) => {
         <div className="form__controls">
           <div className="form__control">
             <label>Title</label>
-            <input type="text" ref={titleRef} />
+            <input type="text" ref={titleRef} required/>
           </div>
           <div className="form__control">
             <label>Price</label>
-            <input type="number" min="0.01" step="0.01" ref={priceRef} />
+            <input type="number" min="0.01" step="0.01" ref={priceRef} required/>
           </div>
           <div className="form__control">
             <label>Date</label>
-            <input type="date" ref={dateRef} />
+            <input type="date" ref={dateRef} required/>
           </div>
         </div>
         <div className="form__actions">
