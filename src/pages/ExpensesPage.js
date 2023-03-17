@@ -47,7 +47,7 @@ const ExpensesPage = () => {
   return (
     <Fragment>
       <div>
-        <ExpenseForm onAddExpense={onRefreshExpensesHandler} />
+        {!isLoading && <ExpenseForm onAddExpense={onRefreshExpensesHandler} />}
         {!isLoading && <Expenses items={expenses} />}
         {isLoading && <div>Loading...</div>}
         {isLoading && error && <div>{error}</div>}
