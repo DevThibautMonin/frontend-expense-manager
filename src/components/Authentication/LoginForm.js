@@ -13,22 +13,33 @@ const LoginForm = () => {
   const [isLoginValid, setIsLoginValid] = useState(true)
   const [error, setError] = useState()
 
-  const submitLoginHandler = (event) => {
+  const inputsAreEmpty = (email, password) => {
+    const emailIsEmpty = !email || email.trim().length === 0
+    const passwordIsEmpty = !password || password.trim().length === 0
+
+    return emailIsEmpty || passwordIsEmpty
+  }
+
+  const submitLoginHandler = async (event) => {
     event.preventDefault()
 
-    if (emailRef.current.value === '' || emailRef.current.value === '') {
+    if (inputsAreEmpty(emailRef.current.value, passwordRef.current.value)) {
       setIsLoginValid(false)
       setError({
         message: "Email and password can't be empty values."
       })
-    }
+    } else {
+      const response = await login(emailRef.current.value, passwordRef.current.value)
+      console.log(response);
 
-    const request = login(emailRef.current.value, passwordRef.current.value)
-    request.then(() => {
-      emailRef.current.value = ''
-      passwordRef.current.value = ''
-      navigate('/expenses')
-    })
+      if (response === 404) {
+        setError({
+          message: "This user doesn't exists. Please verify your email and password."
+        })
+      } else {
+        navigate('/expenses')
+      }
+    }
 
   }
 
