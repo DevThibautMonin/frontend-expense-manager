@@ -30,7 +30,6 @@ const LoginForm = () => {
       })
     } else {
       const response = await login(emailRef.current.value, passwordRef.current.value)
-      console.log(response);
 
       if (response === 404) {
         setError({
