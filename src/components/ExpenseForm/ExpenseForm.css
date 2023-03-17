@@ -1,4 +1,11 @@
-.new-expense__controls {
+.expense-form {
+  width: 50rem;
+  border: 1px solid;
+  margin: 2rem auto;
+  border-radius: 5px;
+}
+
+.form__controls {
   display: flex;
   flex-wrap: wrap;
   gap: 1rem;
@@ -6,13 +13,13 @@
   text-align: left;
 }
 
-.new-expense__control label {
+.form__control label {
   font-weight: bold;
   margin-bottom: 0.5rem;
   display: block;
 }
 
-.new-expense__control input {
+.form__control input {
   font: inherit;
   padding: 0.5rem;
   border-radius: 6px;
@@ -21,10 +28,10 @@
   max-width: 100%;
 }
 
-.new-expense__control label {
-  color: white;
+.form__control label {
+  color: black;
 }
 
-.new-expense__actions {
+.form__actions {
   text-align: right;
 }
