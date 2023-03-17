@@ -1,6 +1,6 @@
 .form {
   border: 1px solid black;
-  width: 500px;
+  width: 40%;
   display: flex;
   flex-direction: column;
   border-radius: 5px;
@@ -12,13 +12,15 @@
   padding: 1%;
   margin: 1%;
   border-radius: 5px;
+  border: 1px solid;
 }
 
-.form label {
+.form label,
+p {
   align-self: center;
   font-size: large;
 }
 
 .invalid {
-  border-color: red;
+  border: 1px solid red;
 }
