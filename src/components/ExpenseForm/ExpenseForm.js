@@ -23,22 +23,14 @@ const ExpenseForm = (props) => {
       date: new Date(date)
     }
 
-    saveExpenseDataHandler(expenseData)
     createExpense(expenseData)
+    props.onAddExpense(expenseData)
+    setIsEditing(false)
 
     titleRef.current.value = ''
     priceRef.current.value = ''
     dateRef.current.value = ''
 
-  }
-
-  const saveExpenseDataHandler = (enteredExpenseData) => {
-    const expenseData = {
-      ...enteredExpenseData,
-      id: Math.random().toString()
-    }
-    props.onAddExpense(expenseData)
-    setIsEditing(false)
   }
 
   const toggleEditingHandler = () => {
