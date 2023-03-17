@@ -1,7 +1,7 @@
 import { Fragment } from "react"
 import { useState, useEffect, useCallback } from 'react'
 import Expenses from '../components/Expenses/Expenses'
-import ExpenseForm from "../components/NewExpense/ExpenseForm"
+import ExpenseForm from "../components/ExpenseForm/ExpenseForm"
 import { getExpenses } from '../services/expense.service'
 
 const ExpensesPage = () => {
