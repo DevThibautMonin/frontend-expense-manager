@@ -2,10 +2,12 @@ import axios from "axios"
 
 const url = 'http://localhost:4500'
 
-export const getExpenses = async () => {
+export const getExpenses = async (token) => {
 
   try {
-    const response = await axios.get(`${url}/expense`)
+    const response = await axios.get(`${url}/expense`, {
+      headers: {'Authorization': token}
+    })
     return response.data
   } catch (error) {
     return error
