@@ -21,6 +21,6 @@ p {
   font-size: large;
 }
 
-.invalid {
+.form input.invalid {
   border: 1px solid red;
 }
