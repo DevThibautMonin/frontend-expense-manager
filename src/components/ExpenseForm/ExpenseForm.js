@@ -7,19 +7,19 @@ const ExpenseForm = (props) => {
 
   const [isEditing, setIsEditing] = useState(false)
   const titleRef = useRef()
-  const amountRef = useRef()
+  const priceRef = useRef()
   const dateRef = useRef()
 
   const submitHandler = (event) => {
     event.preventDefault()
 
     const title = titleRef.current.value
-    const amount = amountRef.current.value
+    const price = priceRef.current.value
     const date = dateRef.current.value
 
     const expenseData = {
       title: title,
-      amount: +amount,
+      amount: +price,
       date: new Date(date)
     }
 
@@ -27,7 +27,7 @@ const ExpenseForm = (props) => {
     createExpense(expenseData)
 
     titleRef.current.value = ''
-    amountRef.current.value = ''
+    priceRef.current.value = ''
     dateRef.current.value = ''
 
   }
@@ -47,22 +47,22 @@ const ExpenseForm = (props) => {
 
   return (
     <>
-      {isEditing && <form onSubmit={submitHandler}>
-        <div className="new-expense__controls">
-          <div className="new-expense__control">
+      {isEditing && <form onSubmit={submitHandler} className="expense-form">
+        <div className="form__controls">
+          <div className="form__control">
             <label>Title</label>
             <input type="text" ref={titleRef} />
           </div>
-          <div className="new-expense__control">
-            <label>Amount</label>
-            <input type="number" min="0.01" step="0.01" ref={amountRef} />
+          <div className="form__control">
+            <label>Price</label>
+            <input type="number" min="0.01" step="0.01" ref={priceRef} />
           </div>
-          <div className="new-expense__control">
+          <div className="form__control">
             <label>Date</label>
-            <input type="date" min="2018-01-01" max="2025-12-31" ref={dateRef} />
+            <input type="date" ref={dateRef} />
           </div>
         </div>
-        <div className="new-expense__actions">
+        <div className="form__actions">
           <Button type="button" onClick={toggleEditingHandler}>Cancel</Button>
           <Button type="submit">Add Expense</Button>
         </div>
