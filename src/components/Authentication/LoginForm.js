@@ -10,7 +10,6 @@ const LoginForm = () => {
   const navigate = useNavigate()
   const emailRef = useRef()
   const passwordRef = useRef()
-  const [isLoginValid, setIsLoginValid] = useState(true)
   const [error, setError] = useState()
 
   const inputsAreEmpty = (email, password) => {
@@ -24,7 +23,6 @@ const LoginForm = () => {
     event.preventDefault()
 
     if (inputsAreEmpty(emailRef.current.value, passwordRef.current.value)) {
-      setIsLoginValid(false)
       setError({
         message: "Email and password can't be empty values."
       })
@@ -45,10 +43,10 @@ const LoginForm = () => {
   return (
     <form onSubmit={submitLoginHandler} className={styles.form}>
       <label htmlFor="email">Email</label>
-      <input className={!isLoginValid ? styles.invalid : ''} id="email" type="text" placeholder="john.doe@email.com" ref={emailRef} />
+      <input className={error ? styles.invalid : ''} id="email" type="text" placeholder="john.doe@email.com" ref={emailRef} />
       <label htmlFor="password">Password</label>
-      <input className={!isLoginValid ? styles.invalid : ''} id="password" type="password" ref={passwordRef} />
-      {!isLoginValid && <LoginError errorMessage={error.message} />}
+      <input className={error ? styles.invalid : ''} id="password" type="password" ref={passwordRef} />
+      {error && <LoginError errorMessage={error.message} />}
       <p>Don't have an account ? <Link to='/register'>Register</Link></p>
       <Button type="submit">Login</Button>
     </form>
