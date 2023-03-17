@@ -1,0 +1,7 @@
+.form {
+  border: 1px solid black;
+}
+
+.invalid {
+  border-color: red;
+}
