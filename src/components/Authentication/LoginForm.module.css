@@ -1,5 +1,22 @@
 .form {
   border: 1px solid black;
+  width: 500px;
+  display: flex;
+  flex-direction: column;
+  border-radius: 5px;
+}
+
+.form input {
+  width: 50%;
+  align-self: center;
+  padding: 1%;
+  margin: 1%;
+  border-radius: 5px;
+}
+
+.form label {
+  align-self: center;
+  font-size: large;
 }
 
 .invalid {
