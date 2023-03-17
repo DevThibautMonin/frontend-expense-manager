@@ -1,7 +1,7 @@
 import { Fragment } from "react"
 import { useState, useEffect, useCallback } from 'react'
 import Expenses from '../components/Expenses/Expenses'
-import NewExpense from '../components/NewExpense/NewExpense'
+import ExpenseForm from "../components/NewExpense/ExpenseForm"
 import { getExpenses } from '../services/expense.service'
 
 const ExpensesPage = () => {
@@ -47,7 +47,7 @@ const ExpensesPage = () => {
   return (
     <Fragment>
       <div>
-        <NewExpense onAddExpense={onRefreshExpensesHandler} />
+        <ExpenseForm onAddExpense={onRefreshExpensesHandler} />
         {!isLoading && <Expenses items={expenses} />}
         {isLoading && <div>Loading...</div>}
         {isLoading && error && <div>{error}</div>}
