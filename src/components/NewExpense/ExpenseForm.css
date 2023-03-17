@@ -21,6 +21,10 @@
   max-width: 100%;
 }
 
+.new-expense__control label {
+  color: white;
+}
+
 .new-expense__actions {
   text-align: right;
 }

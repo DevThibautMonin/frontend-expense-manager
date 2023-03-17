@@ -46,10 +46,12 @@ const ExpensesPage = () => {
 
   return (
     <Fragment>
-      <NewExpense onAddExpense={onRefreshExpensesHandler} />
-      {!isLoading && <Expenses items={expenses} />}
-      {isLoading && <div>Loading...</div>}
-      {isLoading && error && <div>{error}</div>}
+      <div>
+        <NewExpense onAddExpense={onRefreshExpensesHandler} />
+        {!isLoading && <Expenses items={expenses} />}
+        {isLoading && <div>Loading...</div>}
+        {isLoading && error && <div>{error}</div>}
+      </div>
     </Fragment>
   )
 }

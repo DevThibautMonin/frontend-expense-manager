@@ -1,6 +1,7 @@
 import "./ExpenseForm.css"
 import { useRef } from "react"
 import { createExpense } from "../../services/expense.service"
+import Button from "../UI/Button"
 
 const ExpenseForm = (props) => {
 
@@ -47,8 +48,8 @@ const ExpenseForm = (props) => {
         </div>
       </div>
       <div className="new-expense__actions">
-        <button type="button" onClick={props.onCancel}>Cancel</button>
-        <button type="submit">Add Expense</button>
+        <Button type="button" onClick={props.onCancel}>Cancel</Button>
+        <Button type="submit">Add Expense</Button>
       </div>
     </form>
   )
