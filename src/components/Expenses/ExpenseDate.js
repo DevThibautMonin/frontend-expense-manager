@@ -4,7 +4,7 @@ const ExpenseDate = (props) => {
 
   const month = props.date.toLocaleString("fr-FR", { month: "long" })
   const year = props.date.getFullYear()
-  const day = props.date.toLocaleString("fr-FR", { month: "2-digit" })
+  const day = props.date.toLocaleString("fr-FR", { day: "2-digit" })
 
   return (
     <div className="expense-date">
