@@ -16,6 +16,11 @@ const ExpensesPage = () => {
     })
   }
 
+  const deleteExpense = (id) => {
+    const updatedExpenses = expenses.filter((expense) => expense.id !== id)
+    setExpenses(updatedExpenses)
+  }
+
   const getExpensesHandler = useCallback(async () => {
     setIsLoading(true)
     setError(null)
@@ -48,7 +53,7 @@ const ExpensesPage = () => {
     <Fragment>
       <div>
         {!isLoading && <ExpenseForm onAddExpense={onRefreshExpensesHandler} />}
-        {!isLoading && <Expenses items={expenses} />}
+        {!isLoading && <Expenses items={expenses} deleteExpenseHandler={deleteExpense}/>}
         {isLoading && <div>Loading...</div>}
         {isLoading && error && <div>{error}</div>}
       </div>

@@ -17,11 +17,15 @@ const Expenses = (props) => {
     return expense.date.getFullYear().toString() === currentDate
   })
 
+  const deleteExpenseHandler = (expenseId) => {
+    props.deleteExpenseHandler(expenseId)
+  }
+
   return (
     <Card className='expenses'>
       <ExpensesFilter selected={currentDate} onDateChange={dateChangeHandler} />
       <ExpensesChart expenses={filteredExpenses} />
-      <ExpensesList items={filteredExpenses} />
+      <ExpensesList items={filteredExpenses} deleteExpenseHandler={deleteExpenseHandler}/>
     </Card>
   )
 }

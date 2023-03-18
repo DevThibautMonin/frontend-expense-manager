@@ -9,6 +9,7 @@ const ExpenseItem = (props) => {
 
   const deleteExpenseHandler = () => {
     deleteExpense(props.id)
+    props.deleteExpenseHandler(props.id)
   }
 
   return (
@@ -17,7 +18,7 @@ const ExpenseItem = (props) => {
       <div className="expense-item__description">
         <h2>{props.title}</h2>
         <div className="expense-item__price">{props.amount}€</div>
-        <FontAwesomeIcon icon={faTrash} onClick={deleteExpenseHandler}/>
+        <FontAwesomeIcon icon={faTrash} onClick={deleteExpenseHandler} />
       </div>
     </Card>
   )

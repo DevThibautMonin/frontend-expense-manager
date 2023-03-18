@@ -7,6 +7,10 @@ const ExpensesList = (props) => {
     return (<h2 className="expenses-list__fallback">Found no expenses.</h2>)
   }
 
+  const deleteExpenseHandler = (expenseId) => {
+    props.deleteExpenseHandler(expenseId)
+  }
+
   return (
     <li className="expenses-list">
       {
@@ -17,6 +21,7 @@ const ExpensesList = (props) => {
             title={expense.title}
             amount={expense.amount}
             date={expense.date}
+            deleteExpenseHandler={deleteExpenseHandler}
           />))
       }
     </li>
