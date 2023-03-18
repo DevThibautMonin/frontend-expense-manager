@@ -10,7 +10,7 @@ const ExpenseForm = (props) => {
   const priceRef = useRef()
   const dateRef = useRef()
 
-  const submitHandler = (event) => {
+  const submitHandler = async (event) => {
     event.preventDefault()
 
     const title = titleRef.current.value
@@ -23,8 +23,16 @@ const ExpenseForm = (props) => {
       date: new Date(date)
     }
 
-    createExpense(expenseData)
-    props.onAddExpense(expenseData)
+    const newExpense = await createExpense(expenseData)
+
+    const expenseDataWithId = {
+      id: newExpense.data.expense._id,
+      title: newExpense.data.expense.title,
+      amount: +newExpense.data.expense.amount,
+      date: new Date(newExpense.data.expense.date)
+    }
+
+    props.onAddExpense(expenseDataWithId)
     setIsEditing(false)
 
     titleRef.current.value = ''
@@ -43,15 +51,15 @@ const ExpenseForm = (props) => {
         <div className="form__controls">
           <div className="form__control">
             <label>Title</label>
-            <input type="text" ref={titleRef} required/>
+            <input type="text" ref={titleRef} required />
           </div>
           <div className="form__control">
             <label>Price</label>
-            <input type="number" min="0.01" step="0.01" ref={priceRef} required/>
+            <input type="number" min="0.01" step="0.01" ref={priceRef} required />
           </div>
           <div className="form__control">
             <label>Date</label>
-            <input type="date" ref={dateRef} required/>
+            <input type="date" ref={dateRef} required />
           </div>
         </div>
         <div className="form__actions">
