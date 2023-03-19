@@ -18,8 +18,8 @@ const ExpenseItem = (props) => {
       <div className="expense-item__description">
         <h2>{props.title}</h2>
         <div className="expense-item__price">{props.amount}€</div>
-        <FontAwesomeIcon icon={faEdit} onClick={deleteExpenseHandler} />
-        <FontAwesomeIcon icon={faTrash} onClick={deleteExpenseHandler} />
+        <FontAwesomeIcon className="edit-button" icon={faEdit} onClick={deleteExpenseHandler} />
+        <FontAwesomeIcon className="delete-button" icon={faTrash} onClick={deleteExpenseHandler} />
       </div>
     </Card>
   )

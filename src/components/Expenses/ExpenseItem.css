@@ -35,6 +35,14 @@
   border-radius: 12px;
 }
 
+.edit-button {
+  cursor: pointer;
+}
+
+.delete-button {
+  cursor: pointer;
+}
+
 @media (min-width: 580px) {
   .expense-item__description {
     flex-direction: row;
