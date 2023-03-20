@@ -3,6 +3,7 @@ import { useState, useEffect, useCallback } from 'react'
 import Expenses from '../components/Expenses/Expenses'
 import ExpenseForm from "../components/ExpenseForm/ExpenseForm"
 import { getExpenses } from '../services/expense.service'
+import Navbar from "../components/UI/Navbar"
 
 const ExpensesPage = () => {
 
@@ -52,8 +53,9 @@ const ExpensesPage = () => {
   return (
     <Fragment>
       <div>
+        <Navbar />
         {!isLoading && <ExpenseForm onAddExpense={onRefreshExpensesHandler} />}
-        {!isLoading && <Expenses items={expenses} deleteExpenseHandler={deleteExpense}/>}
+        {!isLoading && <Expenses items={expenses} deleteExpenseHandler={deleteExpense} />}
         {isLoading && <div>Loading...</div>}
         {isLoading && error && <div>{error}</div>}
       </div>
