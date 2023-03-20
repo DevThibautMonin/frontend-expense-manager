@@ -43,7 +43,7 @@ const LoginForm = () => {
   return (
     <form onSubmit={submitLoginHandler} className={styles.form}>
       <label htmlFor="email">Email</label>
-      <input className={error ? styles.invalid : ''} id="email" type="text" placeholder="john.doe@email.com" ref={emailRef} />
+      <input className={error ? styles.invalid : ''} id="email" type="email" placeholder="john.doe@email.com" ref={emailRef} />
       <label htmlFor="password">Password</label>
       <input className={error ? styles.invalid : ''} id="password" type="password" ref={passwordRef} />
       {error && <LoginError errorMessage={error.message} />}
