@@ -1,4 +1,5 @@
 import React from 'react'
+import CategoryFilter from '../ExpensesFilters/CategoryFilter'
 import YearFiler from '../ExpensesFilters/YearFilter'
 import './ExpensesFilter.css'
 
@@ -12,7 +13,8 @@ const ExpensesFilter = (props) => {
     <div className='expenses-filter'>
       <div className='expenses-filter__control'>
         <label>Filters</label>
-        <YearFiler year={props.selected} onYearChange={filterDateHandler}/>
+        <CategoryFilter />
+        <YearFiler year={props.selected} onYearChange={filterDateHandler} />
       </div>
     </div>
   )
