@@ -1,12 +1,11 @@
 import "./ExpenseForm.css"
-import { useRef, useState } from "react"
+import { useRef } from "react"
 import { createExpense } from "../../services/expense.service"
 import Button from "../UI/Button"
 import jwtDecode from "jwt-decode"
 
 const ExpenseForm = (props) => {
 
-  const [isEditing, setIsEditing] = useState(false)
   const titleRef = useRef()
   const priceRef = useRef()
   const dateRef = useRef()
@@ -37,7 +36,6 @@ const ExpenseForm = (props) => {
     }
 
     props.onAddExpense(expenseDataWithId)
-    setIsEditing(false)
 
     titleRef.current.value = ''
     priceRef.current.value = ''
@@ -45,13 +43,9 @@ const ExpenseForm = (props) => {
 
   }
 
-  const toggleEditingHandler = () => {
-    setIsEditing((prevState) => !prevState)
-  }
-
   return (
     <>
-      {isEditing && <form onSubmit={submitHandler} className="expense-form">
+      <form onSubmit={submitHandler} className="expense-form">
         <div className="form__controls">
           <div className="form__control">
             <label>Title</label>
@@ -67,11 +61,9 @@ const ExpenseForm = (props) => {
           </div>
         </div>
         <div className="form__actions">
-          <Button type="button" onClick={toggleEditingHandler}>Cancel</Button>
           <Button type="submit">Add Expense</Button>
         </div>
-      </form>}
-      {!isEditing && <Button onClick={toggleEditingHandler}>Add new expense</Button>}
+      </form>
     </>
   )
 }
