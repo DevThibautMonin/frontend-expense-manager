@@ -4,6 +4,7 @@ import Expenses from '../components/Expenses/Expenses'
 import ExpenseForm from "../components/ExpenseForm/ExpenseForm"
 import { getExpensesByUser } from '../services/expense.service'
 import Navbar from "../components/UI/Navbar"
+import { getUserToken } from '../services/authentication.service'
 
 const ExpensesPage = () => {
 
@@ -27,7 +28,7 @@ const ExpensesPage = () => {
     setError(null)
 
     try {
-      const data = await getExpensesByUser(localStorage.getItem('token'))
+      const data = await getExpensesByUser()
 
       const transformedExpenses = data.map(data => {
         return {

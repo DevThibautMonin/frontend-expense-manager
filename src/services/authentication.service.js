@@ -28,3 +28,7 @@ export const register = async (username, email, password) => {
     return error.response.status
   }
 }
+
+export const getUserToken = () => {
+  return localStorage.getItem('token')
+}
