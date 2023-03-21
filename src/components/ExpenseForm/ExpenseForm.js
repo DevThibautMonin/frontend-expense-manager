@@ -2,6 +2,7 @@ import "./ExpenseForm.css"
 import { useRef, useState } from "react"
 import { createExpense } from "../../services/expense.service"
 import Button from "../UI/Button"
+import jwtDecode from "jwt-decode"
 
 const ExpenseForm = (props) => {
 
@@ -13,6 +14,7 @@ const ExpenseForm = (props) => {
   const submitHandler = async (event) => {
     event.preventDefault()
 
+    const decodedToken = jwtDecode(localStorage.getItem('token'))
     const title = titleRef.current.value
     const price = priceRef.current.value
     const date = dateRef.current.value
@@ -20,7 +22,8 @@ const ExpenseForm = (props) => {
     const expenseData = {
       title: title,
       amount: +price,
-      date: new Date(date)
+      date: new Date(date),
+      userId: decodedToken.id
     }
 
     const newExpense = await createExpense(expenseData)
@@ -29,7 +32,8 @@ const ExpenseForm = (props) => {
       id: newExpense.data.expense._id,
       title: newExpense.data.expense.title,
       amount: +newExpense.data.expense.amount,
-      date: new Date(newExpense.data.expense.date)
+      date: new Date(newExpense.data.expense.date),
+      userId: newExpense.data.expense.userId
     }
 
     props.onAddExpense(expenseDataWithId)

@@ -2,7 +2,7 @@ import { Fragment } from "react"
 import { useState, useEffect, useCallback } from 'react'
 import Expenses from '../components/Expenses/Expenses'
 import ExpenseForm from "../components/ExpenseForm/ExpenseForm"
-import { getExpenses } from '../services/expense.service'
+import { getExpensesByUser } from '../services/expense.service'
 import Navbar from "../components/UI/Navbar"
 
 const ExpensesPage = () => {
@@ -27,7 +27,7 @@ const ExpensesPage = () => {
     setError(null)
 
     try {
-      const data = await getExpenses(localStorage.getItem('token'))
+      const data = await getExpensesByUser(localStorage.getItem('token'))
 
       const transformedExpenses = data.map(data => {
         return {

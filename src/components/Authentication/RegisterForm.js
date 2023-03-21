@@ -31,7 +31,7 @@ const RegisterForm = (props) => {
       <input id="password" type="password" ref={passwordRef} />
       <label htmlFor="password-confirmation">Password confirmation</label>
       <input id="password-confirmation" type="password" ref={confirmationPasswordRef} />
-      <p>Alread have an account ? <Link to='/'>Login</Link></p>
+      <p>Already have an account ? <Link to='/'>Login</Link></p>
       <Button type="submit">Register</Button>
     </form>
   )
