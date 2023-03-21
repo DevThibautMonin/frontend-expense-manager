@@ -33,6 +33,7 @@ const ExpensesPage = () => {
           id: data._id,
           title: data.title,
           amount: data.amount,
+          category: data.category,
           date: new Date(data.date)
         }
       })
