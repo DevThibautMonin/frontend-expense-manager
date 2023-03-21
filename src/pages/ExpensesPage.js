@@ -4,7 +4,6 @@ import Expenses from '../components/Expenses/Expenses'
 import ExpenseForm from "../components/ExpenseForm/ExpenseForm"
 import { getExpensesByUser } from '../services/expense.service'
 import Navbar from "../components/UI/Navbar"
-import { getUserToken } from '../services/authentication.service'
 
 const ExpensesPage = () => {
 
