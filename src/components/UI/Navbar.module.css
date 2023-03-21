@@ -1,0 +1,45 @@
+.navbar {
+  background-color: #007bff;
+  padding: 1rem;
+}
+
+.navbar-container {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.navbar-item {
+  color: #fff;
+  text-decoration: none;
+  margin-right: 1rem;
+}
+
+.navbar-item:hover {
+  color: #cce5ff;
+}
+
+.navbar-right {
+  display: flex;
+  align-items: center;
+}
+
+.profile-picture {
+  width: 40px;
+  height: 40px;
+  border-radius: 50%;
+  object-fit: cover;
+  margin-right: 0.5rem;
+}
+
+.username {
+  color: #fff;
+  margin-right: 1rem;
+}
+
+.separator {
+  height: 20px;
+  width: 1px;
+  background-color: #fff;
+  margin-right: 1rem;
+}
