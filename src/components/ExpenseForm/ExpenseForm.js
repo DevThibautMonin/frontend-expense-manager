@@ -1,15 +1,20 @@
 import styles from "./ExpenseForm.module.css"
-import { useRef } from "react"
+import { useRef, useState } from "react"
 import { createExpense } from "../../services/expense.service"
 import Button from "../UI/Button"
 import jwtDecode from "jwt-decode"
+import CategoryFilter from '../ExpensesFilters/CategoryFilter'
 
 const ExpenseForm = (props) => {
 
   const titleRef = useRef()
   const priceRef = useRef()
   const dateRef = useRef()
-  const categoryRef = useRef()
+  const [categoryFilter, setCategory] = useState()
+
+  const categoryFilterHandler = (category) => {
+    setCategory(category)
+  }
 
   const submitHandler = async (event) => {
     event.preventDefault()
@@ -18,14 +23,13 @@ const ExpenseForm = (props) => {
     const title = titleRef.current.value
     const price = priceRef.current.value
     const date = dateRef.current.value
-    const category = categoryRef.current.value
 
     const expenseData = {
       title: title,
       amount: +price,
       date: new Date(date),
       userId: decodedToken.payload.id,
-      category: category
+      category: categoryFilter
     }
 
     const newExpense = await createExpense(expenseData)
@@ -35,7 +39,8 @@ const ExpenseForm = (props) => {
       title: newExpense.data.expense.title,
       amount: +newExpense.data.expense.amount,
       date: new Date(newExpense.data.expense.date),
-      userId: newExpense.data.expense.userId
+      userId: newExpense.data.expense.userId,
+      category: newExpense.data.expense.category
     }
 
     props.onAddExpense(expenseDataWithId)
@@ -43,7 +48,7 @@ const ExpenseForm = (props) => {
     titleRef.current.value = ''
     priceRef.current.value = ''
     dateRef.current.value = ''
-    categoryRef.current.value = ''
+    setCategory('')
 
   }
 
@@ -61,10 +66,7 @@ const ExpenseForm = (props) => {
           </div>
           <div className={styles['form__control']}>
             <label>Category</label>
-            <select ref={categoryRef}>
-              <option value="Default">No category</option>
-              <option value="Food">Food</option>
-            </select>
+            <CategoryFilter onCategoryFilterChange={categoryFilterHandler} />
           </div>
           <div className={styles['form__control']}>
             <label>Date</label>
