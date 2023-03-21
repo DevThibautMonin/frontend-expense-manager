@@ -19,12 +19,13 @@ export const getExpenses = async () => {
 
 export const getExpensesByUser = async () => {
 
+  const token = getUserToken()
   const decodedToken = jwtDecode(getUserToken())
-  const userId = decodedToken.id
+  const userId = decodedToken.payload.id
 
   try {
     const response = await axios.get(`${url}/expense/${userId}`, {
-      headers: { 'Authorization': getUserToken() }
+      headers: { 'Authorization': token }
     })
     return response.data
   } catch (error) {
