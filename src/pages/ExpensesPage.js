@@ -1,4 +1,3 @@
-import { Fragment } from "react"
 import { useState, useEffect, useCallback } from 'react'
 import Expenses from '../components/Expenses/Expenses'
 import ExpenseForm from "../components/ExpenseForm/ExpenseForm"
@@ -51,7 +50,7 @@ const ExpensesPage = () => {
   }, [getExpensesHandler])
 
   return (
-    <Fragment>
+    <>
       <div>
         <Navbar />
         {!isLoading && <ExpenseForm onAddExpense={onRefreshExpensesHandler} />}
@@ -59,7 +58,7 @@ const ExpensesPage = () => {
         {isLoading && <div>Loading...</div>}
         {isLoading && error && <div>{error}</div>}
       </div>
-    </Fragment>
+    </>
   )
 }
 
