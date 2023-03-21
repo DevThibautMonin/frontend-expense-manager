@@ -10,3 +10,11 @@ html body {
   justify-content: center;
   /* align-items: center; */
 }
+
+:root {
+  --navbar-color: #0E1C36;
+  --button-color: #4fc0ed;
+  --chart-background: #afcbff;
+  --chart-bar-inner: #75b8ff;
+  --chart-bar-fill: #0980ff;
+}

@@ -1,5 +1,5 @@
 .navbar {
-  background-color: #007bff;
+  background-color: var(--navbar-color);
   padding: 1rem;
 }
 
