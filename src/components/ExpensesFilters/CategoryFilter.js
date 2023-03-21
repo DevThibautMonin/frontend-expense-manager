@@ -1,13 +1,17 @@
 const CategoryFilter = (props) => {
 
-  const categories = ['Food', 'Sport']
+  const categories = ['Default', 'Food', 'Sport']
+
+  const categoryChangeHandler = (event) => {
+    props.onCategoryFilterChange(event.target.value)
+  }
 
   return (
     <>
-      <select>
+      <select onChange={categoryChangeHandler}>
         {
           categories.map(c =>
-            <option value={c}>{c}</option>
+            <option key={c} value={c}>{c}</option>
           )
         }
       </select>
