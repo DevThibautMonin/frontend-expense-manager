@@ -22,7 +22,7 @@ const ExpenseForm = (props) => {
       title: title,
       amount: +price,
       date: new Date(date),
-      userId: decodedToken.id
+      userId: decodedToken.payload.id
     }
 
     const newExpense = await createExpense(expenseData)
