@@ -1,6 +1,6 @@
 const CategoryFilter = (props) => {
 
-  const categories = ['Default', 'Food', 'Sport']
+  const categories = ['Default', 'Food', 'Sport', 'Work', 'Fun'].sort()
 
   const categoryChangeHandler = (event) => {
     props.onCategoryFilterChange(event.target.value)
