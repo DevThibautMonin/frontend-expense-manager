@@ -24,3 +24,8 @@ p {
 .form input.invalid {
   border: 1px solid red;
 }
+
+.disabled {
+  opacity: 50%;
+  pointer-events: none;
+}

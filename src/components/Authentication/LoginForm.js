@@ -1,4 +1,4 @@
-import { useRef, useState } from "react"
+import { useEffect, useState } from "react"
 import { useNavigate } from "react-router"
 import { Link } from "react-router-dom"
 import { login } from "../../services/authentication.service"
@@ -8,34 +8,36 @@ import LoginError from "./LoginError"
 
 const LoginForm = () => {
   const navigate = useNavigate()
-  const emailRef = useRef()
-  const passwordRef = useRef()
   const [error, setError] = useState()
+  const [emailInput, setEmailInput] = useState('')
+  const [passwordInput, setPasswordInput] = useState('')
+  const [isFormValid, setIsFormValid] = useState(false)
 
-  const inputsAreEmpty = (email, password) => {
-    const emailIsEmpty = !email || email.trim().length === 0
-    const passwordIsEmpty = !password || password.trim().length === 0
+  useEffect(() => {
+    setIsFormValid(
+      emailInput.includes('@') && passwordInput.trim().length >= 8
+    )
+  }, [emailInput, passwordInput])
 
-    return emailIsEmpty || passwordIsEmpty
+  const emailChangeHandler = (event) => {
+    setEmailInput(event.target.value)
+  }
+
+  const passwordChangeHandler = (event) => {
+    setPasswordInput(event.target.value)
   }
 
   const submitLoginHandler = async (event) => {
     event.preventDefault()
 
-    if (inputsAreEmpty(emailRef.current.value, passwordRef.current.value)) {
+    const response = await login(emailInput, passwordInput)
+
+    if (response === 404) {
       setError({
-        message: "Email and password can't be empty values."
+        message: "This user doesn't exists. Please verify your email and password."
       })
     } else {
-      const response = await login(emailRef.current.value, passwordRef.current.value)
-
-      if (response === 404) {
-        setError({
-          message: "This user doesn't exists. Please verify your email and password."
-        })
-      } else {
-        navigate('/expenses')
-      }
+      navigate('/expenses')
     }
 
   }
@@ -43,12 +45,12 @@ const LoginForm = () => {
   return (
     <form onSubmit={submitLoginHandler} className={styles.form}>
       <label htmlFor="email">Email</label>
-      <input className={error ? styles.invalid : ''} id="email" type="email" placeholder="john.doe@email.com" ref={emailRef} />
+      <input className={error ? styles.invalid : ''} id="email" type="email" onChange={emailChangeHandler} placeholder="john.doe@email.com" />
       <label htmlFor="password">Password</label>
-      <input className={error ? styles.invalid : ''} id="password" type="password" ref={passwordRef} />
+      <input className={error ? styles.invalid : ''} id="password" type="password" onChange={passwordChangeHandler} />
       {error && <LoginError errorMessage={error.message} />}
       <p>Don't have an account ? <Link to='/register'>Register</Link></p>
-      <Button type="submit">Login</Button>
+      <Button type="submit" className={!isFormValid ? styles.disabled : ''}>Login</Button>
     </form>
   )
 }
