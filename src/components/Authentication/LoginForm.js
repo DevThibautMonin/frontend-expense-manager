@@ -15,14 +15,12 @@ const LoginForm = () => {
 
   useEffect(() => {
     const identifier = setTimeout(() => {
-      console.log('Check validity');
       setIsFormValid(
         emailInput.includes('@') && passwordInput.trim().length >= 8
       )
     }, 500)
 
     return () => {
-      console.log('Cleanup function')
       clearTimeout(identifier)
     }
   }, [emailInput, passwordInput])
