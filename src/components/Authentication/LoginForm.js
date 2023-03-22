@@ -14,9 +14,17 @@ const LoginForm = () => {
   const [isFormValid, setIsFormValid] = useState(false)
 
   useEffect(() => {
-    setIsFormValid(
-      emailInput.includes('@') && passwordInput.trim().length >= 8
-    )
+    const identifier = setTimeout(() => {
+      console.log('Check validity');
+      setIsFormValid(
+        emailInput.includes('@') && passwordInput.trim().length >= 8
+      )
+    }, 500)
+
+    return () => {
+      console.log('Cleanup function')
+      clearTimeout(identifier)
+    }
   }, [emailInput, passwordInput])
 
   const emailChangeHandler = (event) => {
