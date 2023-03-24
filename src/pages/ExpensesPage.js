@@ -12,12 +12,6 @@ const ExpensesPage = () => {
   const error = useSelector(state => state.ui.error)
   const isLoading = useSelector(state => state.ui.isLoading)
 
-  // const onRefreshExpensesHandler = (expense) => {
-  //   setExpenses((prevExpenses) => {
-  //     return [expense, ...prevExpenses]
-  //   })
-  // }
-
   // const deleteExpense = (id) => {
   //   const updatedExpenses = expenses.filter((expense) => expense.id !== id)
   //   setExpenses(updatedExpenses)

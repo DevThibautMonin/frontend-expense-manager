@@ -1,9 +1,10 @@
 import styles from "./ExpenseForm.module.css"
 import { useRef, useState } from "react"
-import { createExpense } from "../../services/expense.service"
+import { createExpense } from "../../store/expense.actions"
 import Button from "../UI/Button"
 import jwtDecode from "jwt-decode"
 import CategoryFilter from '../ExpensesFilters/CategoryFilter'
+import { useDispatch } from "react-redux"
 
 const ExpenseForm = (props) => {
 
@@ -11,6 +12,7 @@ const ExpenseForm = (props) => {
   const priceRef = useRef()
   const dateRef = useRef()
   const [categoryFilter, setCategory] = useState()
+  const dispatch = useDispatch()
 
   const categoryFilterHandler = (category) => {
     setCategory(category)
@@ -27,23 +29,12 @@ const ExpenseForm = (props) => {
     const expenseData = {
       title: title,
       amount: +price,
-      date: new Date(date),
+      date: date,
       userId: decodedToken.payload.id,
       category: categoryFilter
     }
 
-    const newExpense = await createExpense(expenseData)
-
-    const expenseDataWithId = {
-      id: newExpense.data.expense._id,
-      title: newExpense.data.expense.title,
-      amount: +newExpense.data.expense.amount,
-      date: new Date(newExpense.data.expense.date),
-      userId: newExpense.data.expense.userId,
-      category: newExpense.data.expense.category
-    }
-
-    props.onAddExpense(expenseDataWithId)
+    dispatch(createExpense(expenseData))
 
     titleRef.current.value = ''
     priceRef.current.value = ''

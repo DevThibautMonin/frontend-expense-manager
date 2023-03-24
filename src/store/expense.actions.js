@@ -37,3 +37,33 @@ export const getExpensesData = () => {
     }
   }
 }
+
+export const createExpense = (expense) => {
+  return async (dispatch) => {
+    const create = async () => {
+      const response = await axios.post(`${url}/expense`, expense, {
+        headers: { 'Authorization': getUserToken() }
+      })
+      return response.data
+    }
+
+    try {
+      const expense = await create()
+
+      const expenseDataWithId = {
+        id: expense.expense._id,
+        title: expense.expense.title,
+        amount: +expense.expense.amount,
+        date: expense.expense.date,
+        userId: expense.expense.userId,
+        category: expense.expense.category
+      }
+
+      dispatch(expenseActions.createExpense({ expense: expenseDataWithId }))
+    } catch (error) {
+      console.log(error);
+      dispatch(uiActions.setError({ title: error.response.message }))
+    }
+
+  }
+}
