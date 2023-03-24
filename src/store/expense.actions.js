@@ -6,26 +6,12 @@ import jwtDecode from "jwt-decode"
 
 const url = 'http://localhost:4500'
 
-export const getExpensesByUser = async () => {
-
-  const token = getUserToken()
-  const decodedToken = jwtDecode(getUserToken())
-  const userId = decodedToken.payload.id
-
-  try {
-    const response = await axios.get(`${url}/expense/${userId}`, {
-      headers: { 'Authorization': token }
-    })
-    return response.data
-  } catch (error) {
-    return error
-  }
-}
-
 export const getExpensesData = () => {
   return async (dispatch) => {
     const getData = async () => {
-      const response = await axios.get(`${url}/expense`, {
+      const decodedToken = jwtDecode(getUserToken())
+      const userId = decodedToken.payload.id
+      const response = await axios.get(`${url}/expense/${userId}`, {
         headers: { 'Authorization': getUserToken() }
       })
       return await response.data
