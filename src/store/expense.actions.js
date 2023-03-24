@@ -2,8 +2,25 @@ import axios from "axios"
 import { expenseActions } from "./expense.slice"
 import { getUserToken } from "../services/authentication.service"
 import { uiActions } from "./ui.slice"
+import jwtDecode from "jwt-decode"
 
 const url = 'http://localhost:4500'
+
+export const getExpensesByUser = async () => {
+
+  const token = getUserToken()
+  const decodedToken = jwtDecode(getUserToken())
+  const userId = decodedToken.payload.id
+
+  try {
+    const response = await axios.get(`${url}/expense/${userId}`, {
+      headers: { 'Authorization': token }
+    })
+    return response.data
+  } catch (error) {
+    return error
+  }
+}
 
 export const getExpensesData = () => {
   return async (dispatch) => {
@@ -11,8 +28,7 @@ export const getExpensesData = () => {
       const response = await axios.get(`${url}/expense`, {
         headers: { 'Authorization': getUserToken() }
       })
-      const data = await response.data
-      return data
+      return await response.data
     }
 
     try {
@@ -44,7 +60,7 @@ export const createExpense = (expense) => {
       const response = await axios.post(`${url}/expense`, expense, {
         headers: { 'Authorization': getUserToken() }
       })
-      return response.data
+      return await response.data
     }
 
     try {
