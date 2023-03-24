@@ -9,15 +9,9 @@ import Loader from '../components/UI/Loader'
 
 const ExpensesPage = () => {
 
+  const dispatch = useDispatch()
   const error = useSelector(state => state.ui.error)
   const isLoading = useSelector(state => state.ui.isLoading)
-
-  // const deleteExpense = (id) => {
-  //   const updatedExpenses = expenses.filter((expense) => expense.id !== id)
-  //   setExpenses(updatedExpenses)
-  // }
-
-  const dispatch = useDispatch()
   const expenses = useSelector(state => state.expense.items)
 
   useEffect(() => {
