@@ -19,27 +19,3 @@ export const getExpensesByUser = async () => {
     return error
   }
 }
-
-// export const createExpense = async (expense) => {
-
-//   try {
-//     const response = await axios.post(`${url}/expense`, expense, {
-//       headers: { 'Authorization': getUserToken() }
-//     })
-//     return response
-//   } catch (error) {
-//     return error
-//   }
-
-// }
-
-export const deleteExpense = async (expenseId) => {
-  try {
-    const response = await axios.delete(`${url}/expense/${expenseId}`, {
-      headers: { 'Authorization': getUserToken() }
-    })
-    return response
-  } catch (error) {
-    return error
-  }
-}

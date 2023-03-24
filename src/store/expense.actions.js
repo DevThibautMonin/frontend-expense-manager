@@ -67,3 +67,22 @@ export const createExpense = (expense) => {
 
   }
 }
+
+export const deleteExpense = (expenseId) => {
+  return async (dispatch) => {
+    const deleteExpense = async () => {
+      const response = await axios.delete(`${url}/expense/${expenseId}`, {
+        headers: { 'Authorization': getUserToken() }
+      })
+      return response
+    }
+
+    try {
+      await deleteExpense()
+      dispatch(expenseActions.deleteExpense({ expenseId: expenseId }))
+    } catch (error) {
+      console.log(error)
+    }
+
+  }
+}

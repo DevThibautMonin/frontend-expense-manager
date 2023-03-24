@@ -3,13 +3,15 @@ import ExpenseDate from "./ExpenseDate"
 import Card from "../UI/Card"
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome"
 import { faEdit, faTrash } from '@fortawesome/free-solid-svg-icons'
-import { deleteExpense } from "../../services/expense.service"
+import { useDispatch } from "react-redux"
+import { deleteExpense } from "../../store/expense.actions"
 
 const ExpenseItem = (props) => {
 
+  const dispatch = useDispatch()
+
   const deleteExpenseHandler = () => {
-    deleteExpense(props.id)
-    props.deleteExpenseHandler(props.id)
+    dispatch(deleteExpense(props.id))
   }
 
   return (
