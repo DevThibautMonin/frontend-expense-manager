@@ -14,7 +14,7 @@ const Expenses = (props) => {
   }
 
   const filteredExpenses = props.items.filter(expense => {
-    return expense.date.getFullYear().toString() === currentDate
+    return new Date(expense.date).getFullYear().toString() === currentDate
   })
 
   const deleteExpenseHandler = (expenseId) => {
