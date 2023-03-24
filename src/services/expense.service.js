@@ -4,19 +4,6 @@ import { getUserToken } from "./authentication.service"
 
 const url = 'http://localhost:4500'
 
-export const getExpenses = async () => {
-
-  try {
-    const response = await axios.get(`${url}/expense`, {
-      headers: { 'Authorization': getUserToken() }
-    })
-    return response.data
-  } catch (error) {
-    return error
-  }
-
-}
-
 export const getExpensesByUser = async () => {
 
   const token = getUserToken()
