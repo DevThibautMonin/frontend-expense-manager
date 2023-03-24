@@ -1,7 +1,7 @@
 import { createSlice } from "@reduxjs/toolkit"
 
 const initialUiState = {
-  error: null
+  error: null, isLoading: false
 }
 
 const uiSlice = createSlice({
@@ -12,6 +12,9 @@ const uiSlice = createSlice({
       state.error = {
         title: action.payload.title
       }
+    },
+    setIsLoading(state, action) {
+      state.isLoading = action.payload
     }
   }
 })
