@@ -1,63 +1,43 @@
 import { useState, useEffect, useCallback } from 'react'
 import Expenses from '../components/Expenses/Expenses'
 import ExpenseForm from "../components/ExpenseForm/ExpenseForm"
-import { getExpensesByUser } from '../services/expense.service'
 import Navbar from "../components/UI/Navbar"
+import { useDispatch, useSelector } from "react-redux"
+import { getExpensesData } from "../store/expense.actions"
+import Error from '../components/UI/Error'
+import Loader from '../components/UI/Loader'
 
 const ExpensesPage = () => {
 
-  const [expenses, setExpenses] = useState([])
-  const [isLoading, setIsLoading] = useState(false)
-  const [error, setError] = useState(null)
+  const error = useSelector(state => state.ui.error)
+  const isLoading = useSelector(state => state.ui.isLoading)
 
-  const onRefreshExpensesHandler = (expense) => {
-    setExpenses((prevExpenses) => {
-      return [expense, ...prevExpenses]
-    })
-  }
+  // const onRefreshExpensesHandler = (expense) => {
+  //   setExpenses((prevExpenses) => {
+  //     return [expense, ...prevExpenses]
+  //   })
+  // }
 
-  const deleteExpense = (id) => {
-    const updatedExpenses = expenses.filter((expense) => expense.id !== id)
-    setExpenses(updatedExpenses)
-  }
+  // const deleteExpense = (id) => {
+  //   const updatedExpenses = expenses.filter((expense) => expense.id !== id)
+  //   setExpenses(updatedExpenses)
+  // }
 
-  const getExpensesHandler = useCallback(async () => {
-    setIsLoading(true)
-    setError(null)
-
-    try {
-      const data = await getExpensesByUser()
-
-      const transformedExpenses = data.map(data => {
-        return {
-          id: data._id,
-          title: data.title,
-          amount: data.amount,
-          category: data.category,
-          date: new Date(data.date)
-        }
-      })
-
-      setExpenses(transformedExpenses)
-      setIsLoading(false)
-    } catch (error) {
-      setError(error.message)
-    }
-    setIsLoading(false)
-  }, [])
+  const dispatch = useDispatch()
+  const expenses = useSelector(state => state.expense.items)
 
   useEffect(() => {
-    getExpensesHandler()
-  }, [getExpensesHandler])
+    dispatch(getExpensesData())
+  }, [dispatch])
 
   return (
     <>
       <div>
         <Navbar />
-        {!isLoading && <ExpenseForm onAddExpense={onRefreshExpensesHandler} />}
-        {!isLoading && <Expenses items={expenses} deleteExpenseHandler={deleteExpense} />}
-        {isLoading && <div>Loading...</div>}
-        {isLoading && error && <div>{error}</div>}
+        {!isLoading && <ExpenseForm />}
+        {!isLoading && <Expenses items={expenses} />}
+        {isLoading && <Loader />}
+        {isLoading && error && <Error title={error.title} />}
       </div>
     </>
   )
