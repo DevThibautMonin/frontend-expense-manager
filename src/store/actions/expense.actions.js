@@ -23,7 +23,7 @@ export const getExpensesData = (category) => {
         firstLoad = false
         dispatch(uiActions.setIsLoading(true))
       }
-      dispatch(uiActions.setError({}))
+      dispatch(uiActions.setError(null))
       const expenseData = await getData()
 
       const transformedExpenses = expenseData.map(data => {
