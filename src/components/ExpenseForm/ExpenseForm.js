@@ -1,6 +1,6 @@
 import styles from "./ExpenseForm.module.css"
 import { useRef } from "react"
-import { changeFormCategory, createExpense } from "../../store/expense.actions"
+import { changeFormCategory, createExpense } from "../../store/actions/expense.actions"
 import Button from "../UI/Button"
 import jwtDecode from "jwt-decode"
 import CategoryFilter from '../ExpensesFilters/CategoryFilter'

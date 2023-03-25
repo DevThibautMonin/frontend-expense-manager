@@ -3,7 +3,7 @@ import Expenses from '../components/Expenses/Expenses'
 import ExpenseForm from "../components/ExpenseForm/ExpenseForm"
 import Navbar from "../components/UI/Navbar"
 import { useDispatch, useSelector } from "react-redux"
-import { getExpensesData } from "../store/expense.actions"
+import { getExpensesData } from "../store/actions/expense.actions"
 import Error from '../components/UI/Error'
 import Loader from '../components/UI/Loader'
 

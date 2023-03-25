@@ -4,7 +4,7 @@ import Card from "../UI/Card"
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome"
 import { faEdit, faTrash } from '@fortawesome/free-solid-svg-icons'
 import { useDispatch } from "react-redux"
-import { deleteExpense } from "../../store/expense.actions"
+import { deleteExpense } from "../../store/actions/expense.actions"
 
 const ExpenseItem = (props) => {
 

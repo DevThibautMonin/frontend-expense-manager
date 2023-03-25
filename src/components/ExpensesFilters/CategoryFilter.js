@@ -1,5 +1,5 @@
 import { useDispatch } from "react-redux"
-import { changeFilterCategory, changeFormCategory } from "../../store/expense.actions"
+import { changeFilterCategory, changeFormCategory } from "../../store/actions/expense.actions"
 
 const CategoryFilter = (props) => {
 
