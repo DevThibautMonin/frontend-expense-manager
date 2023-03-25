@@ -13,7 +13,7 @@ const ExpensesFilter = (props) => {
     <div className='expenses-filter'>
       <div className='expenses-filter__control'>
         <label>Filters</label>
-        <CategoryFilter />
+        <CategoryFilter type='filter' />
         <YearFiler year={props.selected} onYearChange={filterDateHandler} />
       </div>
     </div>

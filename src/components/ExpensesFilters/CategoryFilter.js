@@ -1,17 +1,25 @@
+import { useDispatch } from "react-redux"
+import { changeFilterCategory, changeFormCategory } from "../../store/expense.actions"
+
 const CategoryFilter = (props) => {
 
-  const categories = ['Default', 'Food', 'Sport', 'Work', 'Fun'].sort()
+  const categories = ["Default", 'Food', 'Sport', 'Work', 'Fun'].sort()
+  const dispatch = useDispatch()
 
-  const categoryChangeHandler = (event) => {
-    props.onCategoryFilterChange(event.target.value)
+  const categoryFilterHandler = (event) => {
+    dispatch(changeFilterCategory(event.target.value))
+  }
+
+  const categoryFormHandler = (event) => {
+    dispatch(changeFormCategory(event.target.value))
   }
 
   return (
     <>
-      <select onChange={categoryChangeHandler}>
+      <select onChange={props.type === 'filter' ? categoryFilterHandler : categoryFormHandler}>
         {
-          categories.map(c =>
-            <option key={c} value={c}>{c}</option>
+          categories.map(category =>
+            <option key={category} value={category}>{category}</option>
           )
         }
       </select>

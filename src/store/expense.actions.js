@@ -5,20 +5,24 @@ import { uiActions } from "./ui.slice"
 import jwtDecode from "jwt-decode"
 
 const url = 'http://localhost:4500'
+let firstLoad = true
 
-export const getExpensesData = () => {
+export const getExpensesData = (category) => {
   return async (dispatch) => {
     const getData = async () => {
       const decodedToken = jwtDecode(getUserToken())
       const userId = decodedToken.payload.id
-      const response = await axios.get(`${url}/expense/${userId}`, {
+      const response = await axios.get(`${url}/expense/${userId}/${category}`, {
         headers: { 'Authorization': getUserToken() }
       })
       return await response.data
     }
 
     try {
-      dispatch(uiActions.setIsLoading(true))
+      if (firstLoad) {
+        firstLoad = false
+        dispatch(uiActions.setIsLoading(true))
+      }
       dispatch(uiActions.setError({}))
       const expenseData = await getData()
 
@@ -86,5 +90,17 @@ export const deleteExpense = (expenseId) => {
       console.log(error)
     }
 
+  }
+}
+
+export const changeFilterCategory = (filterCategory) => {
+  return (dispatch) => {
+    dispatch(expenseActions.changeFilterCategory({ filterCategory: filterCategory }))
+  }
+}
+
+export const changeFormCategory = (formCategory) => {
+  return (dispatch) => {
+    dispatch(expenseActions.changeFormCategory({ formCategory: formCategory }))
   }
 }

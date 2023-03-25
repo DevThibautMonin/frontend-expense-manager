@@ -13,10 +13,11 @@ const ExpensesPage = () => {
   const error = useSelector(state => state.ui.error)
   const isLoading = useSelector(state => state.ui.isLoading)
   const expenses = useSelector(state => state.expense.items)
+  const filterCategory = useSelector(state => state.expense.filterCategory)
 
   useEffect(() => {
-    dispatch(getExpensesData())
-  }, [dispatch])
+    dispatch(getExpensesData(filterCategory))
+  }, [filterCategory, dispatch])
 
   return (
     <>
