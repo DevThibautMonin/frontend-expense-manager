@@ -1,22 +1,18 @@
 import styles from "./ExpenseForm.module.css"
-import { useRef, useState } from "react"
-import { createExpense } from "../../store/expense.actions"
+import { useRef } from "react"
+import { changeFormCategory, createExpense } from "../../store/expense.actions"
 import Button from "../UI/Button"
 import jwtDecode from "jwt-decode"
 import CategoryFilter from '../ExpensesFilters/CategoryFilter'
-import { useDispatch } from "react-redux"
+import { useDispatch, useSelector } from "react-redux"
 
 const ExpenseForm = (props) => {
 
   const titleRef = useRef()
   const priceRef = useRef()
   const dateRef = useRef()
-  const [categoryFilter, setCategory] = useState()
   const dispatch = useDispatch()
-
-  const categoryFilterHandler = (category) => {
-    setCategory(category)
-  }
+  const formCategory = useSelector(state => state.expense.formCategory)
 
   const submitHandler = async (event) => {
     event.preventDefault()
@@ -31,7 +27,7 @@ const ExpenseForm = (props) => {
       amount: +price,
       date: date,
       userId: decodedToken.payload.id,
-      category: categoryFilter
+      category: formCategory
     }
 
     dispatch(createExpense(expenseData))
@@ -39,7 +35,7 @@ const ExpenseForm = (props) => {
     titleRef.current.value = ''
     priceRef.current.value = ''
     dateRef.current.value = ''
-    setCategory('')
+    dispatch(changeFormCategory('Default'))
 
   }
 
@@ -57,7 +53,7 @@ const ExpenseForm = (props) => {
           </div>
           <div className={styles['form__control']}>
             <label>Category</label>
-            <CategoryFilter onCategoryFilterChange={categoryFilterHandler} />
+            <CategoryFilter type='form' />
           </div>
           <div className={styles['form__control']}>
             <label>Date</label>
