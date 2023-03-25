@@ -47,7 +47,7 @@ const LoginForm = () => {
       <label htmlFor="email">Email</label>
       <input className={error ? styles.invalid : ''} id="email" type="email" onChange={emailChangeHandler} placeholder="john.doe@email.com" />
       <label htmlFor="password">Password</label>
-      <input className={error ? styles.invalid : ''} id="password" type="password" onChange={passwordChangeHandler} />
+      <input className={error ? styles.invalid : ''} id="password" type="password" onChange={passwordChangeHandler} placeholder='********'/>
       {error && <LoginError errorMessage={error.message} />}
       <p>Don't have an account ? <Link to='/register'>Register</Link></p>
       {!error && isLoading && <Loader />}
