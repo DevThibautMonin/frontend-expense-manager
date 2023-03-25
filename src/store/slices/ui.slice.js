@@ -9,9 +9,7 @@ const uiSlice = createSlice({
   initialState: initialUiState,
   reducers: {
     setError(state, action) {
-      state.error = {
-        title: action.payload.title
-      }
+      state.error = action.payload
     },
     setIsLoading(state, action) {
       state.isLoading = action.payload
