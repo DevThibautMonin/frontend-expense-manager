@@ -1,7 +1,9 @@
+import styles from './Loader.module.css'
+
 const Loader = (props) => {
   return (
     <>
-      <h1>Loading...</h1>
+      <h1 className={styles.title}>Loading...</h1>
     </>
   )
 }
