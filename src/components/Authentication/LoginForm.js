@@ -1,17 +1,21 @@
 import { useEffect, useState } from "react"
-import { useNavigate } from "react-router"
 import { Link } from "react-router-dom"
-import { login } from "../../services/authentication.service"
 import styles from './LoginForm.module.css'
 import Button from '../UI/Button'
 import LoginError from "./LoginError"
+import { useDispatch, useSelector } from "react-redux"
+import Loader from '../UI/Loader'
+import { useNavigate } from "react-router"
+import { login } from "../../store/actions/authentication.actions"
 
 const LoginForm = () => {
-  const navigate = useNavigate()
-  const [error, setError] = useState()
   const [emailInput, setEmailInput] = useState('')
   const [passwordInput, setPasswordInput] = useState('')
   const [isFormValid, setIsFormValid] = useState(false)
+  const isLoading = useSelector(state => state.ui.isLoading)
+  const error = useSelector(state => state.ui.error)
+  const navigate = useNavigate()
+  const dispatch = useDispatch()
 
   useEffect(() => {
     const identifier = setTimeout(() => {
@@ -35,17 +39,7 @@ const LoginForm = () => {
 
   const submitLoginHandler = async (event) => {
     event.preventDefault()
-
-    const response = await login(emailInput, passwordInput)
-
-    if (response === 404) {
-      setError({
-        message: "This user doesn't exists. Please verify your email and password."
-      })
-    } else {
-      navigate('/expenses')
-    }
-
+    dispatch(login(emailInput, passwordInput, navigate))
   }
 
   return (
@@ -56,6 +50,7 @@ const LoginForm = () => {
       <input className={error ? styles.invalid : ''} id="password" type="password" onChange={passwordChangeHandler} />
       {error && <LoginError errorMessage={error.message} />}
       <p>Don't have an account ? <Link to='/register'>Register</Link></p>
+      {!error && isLoading && <Loader />}
       <Button type="submit" className={!isFormValid ? styles.disabled : ''}>Login</Button>
     </form>
   )
