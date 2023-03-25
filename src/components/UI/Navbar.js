@@ -2,11 +2,15 @@ import styles from './Navbar.module.css'
 import ReactDOM from "react-dom"
 import jwt_decode from 'jwt-decode'
 import { Link } from 'react-router-dom'
+import { useDispatch } from 'react-redux'
+import { logout } from '../../store/actions/authentication.actions'
 
 const Navbar = () => {
 
+  const dispatch = useDispatch()
+
   const logoutHandler = () => {
-    localStorage.removeItem('token')
+    dispatch(logout())
   }
 
   const token = localStorage.getItem('token')
