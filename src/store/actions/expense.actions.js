@@ -1,7 +1,7 @@
 import axios from "axios"
-import { expenseActions } from "../expense.slice"
+import { expenseActions } from "../slices/expense.slice"
 import { getUserToken } from "../../services/authentication.service"
-import { uiActions } from "../ui.slice"
+import { uiActions } from "../slices/ui.slice"
 import jwtDecode from "jwt-decode"
 
 const url = 'http://localhost:4500'

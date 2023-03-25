@@ -1,6 +1,6 @@
 import { configureStore } from "@reduxjs/toolkit"
-import { expenseReducers } from "./expense.slice"
-import { uiReducers } from "./ui.slice"
+import { expenseReducers } from "./slices/expense.slice"
+import { uiReducers } from "./slices/ui.slice"
 
 const store = configureStore({
   reducer: { expense: expenseReducers, ui: uiReducers }
