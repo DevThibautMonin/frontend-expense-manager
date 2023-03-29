@@ -1,4 +1,4 @@
-import { useEffect, useState } from "react"
+import { useState } from "react"
 import { Link } from "react-router-dom"
 import styles from './LoginForm.module.css'
 import Button from '../UI/Button'
@@ -13,7 +13,6 @@ const LoginForm = () => {
   const [isEmailTouched, setIsEmailTouched] = useState(false)
   const [passwordInput, setPasswordInput] = useState('')
   const [isPasswordTouched, setIsPasswordTouched] = useState(false)
-  const [isFormValid, setIsFormValid] = useState(false)
   const isLoading = useSelector(state => state.ui.isLoading)
   const error = useSelector(state => state.ui.error)
   const navigate = useNavigate()
@@ -25,19 +24,25 @@ const LoginForm = () => {
   const isPasswordValid = passwordInput.trim().length >= 8
   const isPasswordInputInvalid = !isPasswordValid && isPasswordTouched
 
-  useEffect(() => {
-    const identifier = setTimeout(() => {
-      if (isEmailValid && isPasswordValid) {
-        setIsFormValid(true)
-      } else {
-        setIsFormValid(false)
-      }
-    }, 500)
+  let isFormValid = false
 
-    return () => {
-      clearTimeout(identifier)
-    }
-  }, [isEmailValid, isPasswordValid])
+  if (isEmailValid && isPasswordValid) {
+    isFormValid = true
+  }
+
+  // useEffect(() => {
+  //   const identifier = setTimeout(() => {
+  //     if (isEmailValid && isPasswordValid) {
+  //       setIsFormValid(true)
+  //     } else {
+  //       setIsFormValid(false)
+  //     }
+  //   }, 500)
+
+  //   return () => {
+  //     clearTimeout(identifier)
+  //   }
+  // }, [isEmailValid, isPasswordValid])
 
   const emailChangeHandler = (event) => {
     setEmailInput(event.target.value)
