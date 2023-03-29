@@ -27,15 +27,17 @@ const LoginForm = () => {
 
   useEffect(() => {
     const identifier = setTimeout(() => {
-      setIsFormValid(
-        emailInput.includes('@') && passwordInput.trim().length >= 8
-      )
+      if (isEmailValid && isPasswordValid) {
+        setIsFormValid(true)
+      } else {
+        setIsFormValid(false)
+      }
     }, 500)
 
     return () => {
       clearTimeout(identifier)
     }
-  }, [emailInput, passwordInput])
+  }, [isEmailValid, isPasswordValid])
 
   const emailChangeHandler = (event) => {
     setEmailInput(event.target.value)
@@ -68,7 +70,7 @@ const LoginForm = () => {
       <label htmlFor="password">Password</label>
       <input className={isPasswordInputInvalid ? styles.invalid : ''} id="password" type="password" onChange={passwordChangeHandler} onBlur={passwordInputBlurHandler} placeholder='********' />
       {isPasswordInputInvalid && <LoginError errorMessage={"Please enter a valid password"} />}
-      {error && <LoginError errorMessage={error} />}
+      {error && <LoginError errorMessage={error.message} />}
       <p>Don't have an account ? <Link to='/register'>Register</Link></p>
       {!error && isLoading && <Loader />}
       <Button type="submit" className={!isFormValid ? styles.disabled : ''}>Login</Button>
