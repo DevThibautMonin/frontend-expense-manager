@@ -1,6 +1,6 @@
 import axios from "axios"
 import { expenseActions } from "../slices/expense.slice"
-import { getUserToken } from "../../services/authentication.service"
+import { getUserToken } from "../actions/authentication.actions"
 import { uiActions } from "../slices/ui.slice"
 import jwtDecode from "jwt-decode"
 
