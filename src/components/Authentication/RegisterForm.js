@@ -2,10 +2,12 @@ import Button from "../UI/Button"
 import { Link, useNavigate } from "react-router-dom"
 import { useRef } from "react"
 import styles from './RegisterForm.module.css'
-import { register } from "../../services/authentication.service"
+import { useDispatch } from "react-redux"
+import { register } from "../../store/actions/authentication.actions"
 
 const RegisterForm = (props) => {
 
+  const dispatch = useDispatch()
   const navigate = useNavigate()
   const emailRef = useRef()
   const usernameRef = useRef()
@@ -14,11 +16,7 @@ const RegisterForm = (props) => {
 
   const submitRegisterHandler = async (event) => {
     event.preventDefault()
-
-    const response = await register(usernameRef.current.value, emailRef.current.value, passwordRef.current.value)
-    if (response.status === 201) {
-      navigate('/')
-    }
+    dispatch(register(usernameRef.current.value, emailRef.current.value, passwordRef.current.value, navigate))
   }
 
   return (
