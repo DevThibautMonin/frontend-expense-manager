@@ -52,6 +52,25 @@ export const login = (email, password, navigate) => {
   }
 }
 
+export const getUser = (userId) => {
+  return async (dispatch) => {
+    const getUser = async () => {
+      const response = await axios.get(`${url}/authentication/${userId}`)
+      return response
+    }
+
+    try {
+      dispatch(uiActions.setIsLoading(true))
+      const response = await getUser()
+      dispatch(uiActions.setIsLoading(false))
+      return response
+    } catch (error) {
+
+    }
+
+  }
+}
+
 export const logout = () => {
   return async (dispatch) => {
     localStorage.removeItem('token')
