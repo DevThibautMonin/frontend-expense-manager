@@ -1,4 +1,5 @@
 import { uiActions } from "../slices/ui.slice"
+import { expenseActions } from '../slices/expense.slice'
 import axios from "axios"
 
 const url = 'http://localhost:4500'
@@ -55,6 +56,7 @@ export const logout = () => {
   return async (dispatch) => {
     localStorage.removeItem('token')
     dispatch(uiActions.setError(null))
+    dispatch(expenseActions.changeFilterCategory({ filterCategory: undefined }))
   }
 }
 
