@@ -7,11 +7,13 @@ const CategoryFilter = (props) => {
   const dispatch = useDispatch()
 
   const categoryFilterHandler = (event) => {
-    dispatch(changeFilterCategory(event.target.value))
+    const value = event.target.value === '' ? undefined : event.target.value
+    dispatch(changeFilterCategory(value))
   }
 
   const categoryFormHandler = (event) => {
-    dispatch(changeFormCategory(event.target.value))
+    const value = event.target.value === '' ? undefined : event.target.value
+    dispatch(changeFormCategory(value))
   }
 
   return (
@@ -19,7 +21,7 @@ const CategoryFilter = (props) => {
       <select onChange={props.type === 'filter' ? categoryFilterHandler : categoryFormHandler}>
         {
           categories.map(category =>
-            <option key={category} value={category}>{category}</option>
+            <option key={category} value={category === 'Default' ? '' : category}>{category}</option>
           )
         }
       </select>
