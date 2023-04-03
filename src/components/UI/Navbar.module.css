@@ -35,6 +35,7 @@
 .username {
   color: #fff;
   margin-right: 1rem;
+  text-decoration: none;
 }
 
 .separator {
