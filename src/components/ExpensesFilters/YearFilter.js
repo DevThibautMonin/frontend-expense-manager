@@ -8,15 +8,13 @@ const YearFilter = (props) => {
   const years = ['2017', '2018', '2019', '2020', '2021', '2022', '2023', '2024', '2025'].reverse()
 
   return (
-    <>
-      <select value={props.year} onChange={yearFilterHandler}>
-        {
-          years.map(y =>
-            <option key={y} value={y}>{y}</option>
-          )
-        }
-      </select>
-    </>
+    <select value={props.year} onChange={yearFilterHandler}>
+      {
+        years.map(y =>
+          <option key={y} value={y}>{y}</option>
+        )
+      }
+    </select>
   )
 }
 
