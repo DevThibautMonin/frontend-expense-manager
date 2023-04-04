@@ -10,8 +10,8 @@ const YearFilter = (props) => {
   return (
     <select value={props.year} onChange={yearFilterHandler}>
       {
-        years.map(y =>
-          <option key={y} value={y}>{y}</option>
+        years.map(year =>
+          <option key={year} value={year}>{year}</option>
         )
       }
     </select>
