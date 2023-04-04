@@ -20,18 +20,21 @@ const RegisterForm = (props) => {
   }
 
   return (
-    <form onSubmit={submitRegisterHandler} className={styles.form}>
-      <label htmlFor="email">Email</label>
-      <input id="email" type="email" placeholder="john.doe@email.com" ref={emailRef} />
-      <label htmlFor="username">Username</label>
-      <input id="username" type="text" placeholder="John Doe" ref={usernameRef} />
-      <label htmlFor="password">Password</label>
-      <input id="password" type="password" ref={passwordRef} />
-      <label htmlFor="password-confirmation">Password confirmation</label>
-      <input id="password-confirmation" type="password" ref={confirmationPasswordRef} />
-      <p>Already have an account ? <Link to='/'>Login</Link></p>
-      <Button type="submit">Register</Button>
-    </form>
+    <div className={styles.container}>
+      <form onSubmit={submitRegisterHandler} className={styles.form}>
+        <label htmlFor="email">Email</label>
+        <input id="email" type="email" placeholder="john.doe@email.com" ref={emailRef} />
+        <label htmlFor="username">Username</label>
+        <input id="username" type="text" placeholder="John Doe" ref={usernameRef} />
+        <label htmlFor="password">Password</label>
+        <input id="password" type="password" ref={passwordRef} placeholder="********" />
+        <label htmlFor="password-confirmation">Password confirmation</label>
+        <input id="password-confirmation" type="password" ref={confirmationPasswordRef} placeholder="********" />
+        <p>Already have an account ? <Link to='/'>Login</Link></p>
+        <Button type="submit">Register</Button>
+      </form>
+    </div>
+
   )
 }
 

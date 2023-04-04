@@ -29,18 +29,20 @@ const LoginForm = () => {
   }
 
   return (
-    <form onSubmit={submitLoginHandler} className={styles.form}>
-      <label htmlFor="email">Email</label>
-      <input className={emailHasError ? styles.invalid : ''} id="email" type="email" onChange={emailChangeHandler} onBlur={emailBlurHandler} placeholder="john.doe@email.com" />
-      {emailHasError && <LoginError errorMessage={"Please enter a valid email"} />}
-      <label htmlFor="password">Password</label>
-      <input className={passwordHasError ? styles.invalid : ''} id="password" type="password" onChange={passwordChangeHandler} onBlur={passwordBlurHandler} placeholder='********' />
-      {passwordHasError && <LoginError errorMessage={"Please enter a valid password"} />}
-      {error && <LoginError errorMessage={error.message} />}
-      <p>Don't have an account ? <Link to='/register'>Register</Link></p>
-      {!error && isLoading && <Loader />}
-      <Button type="submit" className={!isFormValid ? styles.disabled : ''}>Login</Button>
-    </form>
+    <div className={styles.container}>
+      <form onSubmit={submitLoginHandler} className={styles.form}>
+        <label htmlFor="email">Email</label>
+        <input className={emailHasError ? styles.invalid : ''} id="email" type="email" onChange={emailChangeHandler} onBlur={emailBlurHandler} placeholder="john.doe@email.com" />
+        {emailHasError && <LoginError errorMessage={"Please enter a valid email"} />}
+        <label htmlFor="password">Password</label>
+        <input className={passwordHasError ? styles.invalid : ''} id="password" type="password" onChange={passwordChangeHandler} onBlur={passwordBlurHandler} placeholder='********' />
+        {passwordHasError && <LoginError errorMessage={"Please enter a valid password"} />}
+        {error && <LoginError errorMessage={error.message} />}
+        <p>Don't have an account ? <Link to='/register'>Register</Link></p>
+        {!error && isLoading && <Loader />}
+        <Button type="submit" className={!isFormValid ? styles.disabled : ''}>Login</Button>
+      </form>
+    </div>
   )
 }
 
