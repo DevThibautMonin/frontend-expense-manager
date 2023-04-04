@@ -13,6 +13,7 @@ const ExpenseForm = (props) => {
   const dateRef = useRef()
   const dispatch = useDispatch()
   const formCategory = useSelector(state => state.expense.formCategory)
+  const defaultDate = new Date().toISOString().substring(0, 10)
 
   const submitHandler = async (event) => {
     event.preventDefault()
@@ -34,7 +35,7 @@ const ExpenseForm = (props) => {
 
     titleRef.current.value = ''
     priceRef.current.value = ''
-    dateRef.current.value = ''
+    dateRef.current.value = defaultDate
     dispatch(changeFormCategory('Default'))
 
   }
@@ -57,7 +58,7 @@ const ExpenseForm = (props) => {
           </div>
           <div className={styles['form__control']}>
             <label>Date</label>
-            <input type="date" ref={dateRef} required />
+            <input type="date" defaultValue={defaultDate} ref={dateRef} required />
           </div>
         </div>
         <div className={styles['form__actions']}>
