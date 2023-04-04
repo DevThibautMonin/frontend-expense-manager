@@ -3,12 +3,12 @@ import { changeFilterCategory, changeFormCategory } from "../../store/actions/ex
 
 const CategoryFilter = (props) => {
 
-  const categories = ["Default", 'Food', 'Sport', 'Work', 'Fun'].sort()
+  const categories = ["Default", "Food", "Sport", "Work", "Fun", "Miscellaneous", "Clothing"].sort()
   const dispatch = useDispatch()
 
   const categoryHandler = (event) => {
-    const value = event.target.value === '' ? undefined : event.target.value
-    if (props.type === 'filter') {
+    const value = event.target.value === "" ? undefined : event.target.value
+    if (props.type === "filter") {
       dispatch(changeFilterCategory(value))
     } else {
       dispatch(changeFormCategory(value))
@@ -19,7 +19,7 @@ const CategoryFilter = (props) => {
     <select onChange={categoryHandler}>
       {
         categories.map(category =>
-          <option key={category} value={category === 'Default' ? '' : category}>{category}</option>
+          <option key={category} value={category === "Default" ? "" : category}>{category}</option>
         )
       }
     </select>
