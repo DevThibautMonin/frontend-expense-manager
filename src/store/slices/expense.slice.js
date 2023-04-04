@@ -16,11 +16,10 @@ const expenseSlice = createSlice({
     createExpense(state, action) {
       const newExpense = action.payload.expense
       state.items.push(newExpense)
-      state.items = state.items.filter(item => item.category === state.filterCategory)
     },
     deleteExpense(state, action) {
       const expenseId = action.payload.expenseId
-      state.items = state.items.filter((item) => item.id !== expenseId && item.category === state.filterCategory)
+      state.items = state.items.filter((item) => item.id !== expenseId)
     },
     changeFilterCategory(state, action) {
       state.filterCategory = action.payload.filterCategory
