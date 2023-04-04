@@ -28,7 +28,7 @@ const Navbar = () => {
                 </div>
                 <div className={styles['navbar-right']}>
                   <img src="https://upload.wikimedia.org/wikipedia/commons/thumb/2/2c/Default_pfp.svg/1200px-Default_pfp.svg.png" alt='profile' className={styles['profile-picture']} />
-                  <Link className={styles.username} to='/profile'>{decodedToken.payload.username}</Link>
+                  <span className={styles.username}>{decodedToken.payload.username}</span>
                   <span className={styles.separator}></span>
                   <Link className={styles['navbar-item']} onClick={logoutHandler} to='/'>Logout</Link>
                 </div>
