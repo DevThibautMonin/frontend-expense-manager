@@ -3,7 +3,8 @@ import { changeFilterCategory, changeFormCategory } from "../../store/actions/ex
 
 const CategoryFilter = (props) => {
 
-  const categories = ["Default", "Food", "Sport", "Work", "Fun", "Miscellaneous", "Clothing"].sort()
+  const categories = ["Food", "Sport", "Work", "Fun", "Miscellaneous", "Clothing"].sort()
+  categories.unshift("Default")
   const dispatch = useDispatch()
 
   const categoryHandler = (event) => {
