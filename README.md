@@ -29,3 +29,6 @@ Expense list without filters
 
 Expense list with filter
 <img width="827" alt="image" src="https://user-images.githubusercontent.com/92627309/230182420-06fe41a5-4cc6-493b-9172-05d1d0184a22.png">
+
+Chart with multiple month expenses
+<img width="825" alt="image" src="https://user-images.githubusercontent.com/92627309/230182977-2074eba0-48b4-4fbe-b134-280bff5af282.png">
