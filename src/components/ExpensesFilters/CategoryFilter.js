@@ -8,7 +8,7 @@ const CategoryFilter = (props) => {
   const dispatch = useDispatch()
 
   const categoryHandler = (event) => {
-    const value = event.target.value === "" ? undefined : event.target.value
+    const value = event.target.value
     if (props.type === "filter") {
       dispatch(changeFilterCategory(value))
     } else {
@@ -20,7 +20,7 @@ const CategoryFilter = (props) => {
     <select onChange={categoryHandler}>
       {
         categories.map(category =>
-          <option key={category} value={category === "Default" ? "" : category}>{category}</option>
+          <option defaultValue="Default" key={category} value={category}>{category}</option>
         )
       }
     </select>

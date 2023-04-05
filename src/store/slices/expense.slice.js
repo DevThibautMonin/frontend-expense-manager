@@ -2,8 +2,8 @@ import { createSlice } from "@reduxjs/toolkit"
 
 const initialExpenseState = {
   items: [],
-  formCategory: undefined,
-  filterCategory: undefined
+  formCategory: "Default",
+  filterCategory: "Default"
 }
 
 const expenseSlice = createSlice({
